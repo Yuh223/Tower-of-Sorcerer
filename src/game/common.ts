@@ -41,6 +41,36 @@ export function drawMuteButton(cfg: { cx: number, cy: number, width: number, hei
     }
   };
 }
+export function OuterWallConstructor(){
+  const mazeLayout = [
+    "#############",
+    "#           #",
+    "#           #",
+    "#           #",
+    "#           #",
+    "#           #",
+    "#           #",
+    "#           #",
+    "#           #",
+    "#           #",
+    "#           #",
+    "#           #",
+    "#############",
+  ];
+  // Create walls and goodies from the `mazeLayout`
+  for (let row = 0; row < mazeLayout.length; row++) {
+    for (let col = 0; col < mazeLayout[row].length; col++) {
+      if (mazeLayout[row][col] === "#") {
+        new Actor({
+          rigidBody: new BoxBody({ cx: col + 0.5, cy: row + 0.5, width: 1, height: 1 }),
+          appearance: new ImageSprite({ width: 1, height: 1, img: "wall_1.png" }),
+          role: new Obstacle(),
+        });
+      }
+    }
+  }
+
+}
 /** Draw a bounding box that surrounds the default world viewport */
 function boundingBox() {
     // Draw a box around the world
@@ -113,3 +143,5 @@ function boundingBox() {
       role: new Obstacle(),
     });
   }
+
+  
