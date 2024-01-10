@@ -1,4 +1,4 @@
-import { FilledBox, ImageSprite } from "../jetlag/Components/Appearance";
+import { FilledBox, ImageSprite, TextSprite } from "../jetlag/Components/Appearance";
 import { BoxBody } from "../jetlag/Components/RigidBody";
 import { Obstacle } from "../jetlag/Components/Role";
 import { Actor } from "../jetlag/Entities/Actor";
@@ -65,6 +65,9 @@ export function OuterWallConstructor(){
           rigidBody: new BoxBody({ cx: col + 0.5, cy: row + 0.5, width: 1, height: 1 }),
           appearance: new ImageSprite({ width: 1, height: 1, img: "wall_1.png" }),
           role: new Obstacle(),
+          extra: {
+            isWall: true,
+          }
         });
       }
     }
@@ -143,5 +146,57 @@ function boundingBox() {
       role: new Obstacle(),
     });
   }
+
+  /**
+ * Create an overlay (blocking all game progress) consisting of a black screen
+ * with text.  Clearing the overlay will start the next level.
+ *
+ * @param message A message to display in the middle of the screen
+ */
+export function winMessage(message: string) {
+  stage.score.winSceneBuilder = (overlay: Scene) => {
+    new Actor({
+      appearance: new FilledBox({ width: 16, height: 9, fillColor: "#000000" }),
+      rigidBody: new BoxBody({ cx: 8, cy: 4.5, width: 16, height: 9 }, { scene: overlay }),
+      gestures: {
+        tap: () => {
+          stage.clearOverlay();
+          stage.switchTo(stage.score.onWin.builder, stage.score.onWin.level);
+          return true;
+        }
+      },
+    });
+    new Actor({
+      appearance: new TextSprite({ center: true, face: "Arial", color: "#FFFFFF", size: 28, z: 0 }, message),
+      rigidBody: new BoxBody({ cx: 8, cy: 4.5, width: .1, height: .1 }, { scene: overlay }),
+    });
+  };
+}
+
+/**
+ * Create an overlay (blocking all game progress) consisting of a black screen
+ * with text.  Clearing the overlay will restart the level.
+ *
+ * @param message A message to display in the middle of the screen
+ */
+export function loseMessage(message: string) {
+  stage.score.loseSceneBuilder = (overlay: Scene) => {
+    new Actor({
+      appearance: new FilledBox({ width: 16, height: 9, fillColor: "#000000" }),
+      rigidBody: new BoxBody({ cx: 8, cy: 4.5, width: 16, height: 9 }, { scene: overlay }),
+      gestures: {
+        tap: () => {
+          stage.clearOverlay();
+          stage.switchTo(stage.score.onLose.builder, stage.score.onLose.level);
+          return true;
+        }
+      },
+    });
+    new Actor({
+      appearance: new TextSprite({ center: true, face: "Arial", color: "#FFFFFF", size: 28, z: 0 }, message),
+      rigidBody: new BoxBody({ cx: 8, cy: 4.5, width: .1, height: .1 }, { scene: overlay }),
+    })
+  };
+}
 
   
