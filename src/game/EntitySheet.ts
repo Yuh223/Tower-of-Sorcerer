@@ -32,7 +32,7 @@ export function createRedSlime(cx:number, cy:number){
     images: ["red_slime_1.png", "red_slime_2.png"]
   });
   animation_map.set(AnimationState.IDLE_E, Redsmile);
-  let green_smile = new Actor({
+  let redslime = new Actor({
       appearance: new AnimatedSprite({width: 1, height: 1, animations: animation_map }),
       rigidBody: new BoxBody({ cx, cy, width: 1, height: 1 },{disableRotation:true}),
       extra: {

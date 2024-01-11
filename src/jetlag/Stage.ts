@@ -108,7 +108,7 @@ export class Stage {
 
     let action = () => {
       if (this.renderer.mostRecentScreenShot) {
-        let screenshot = new ImageSprite({ width: 16, height: 9, img: "", z: -2 });
+        let screenshot = new ImageSprite({ width: 19, height: 13, img: "", z: -2 });
         screenshot.overrideImage(this.renderer.mostRecentScreenShot);
         this.overlay = new Scene(this.pixelMeterRatio, new BasicCollisionSystem());
         builder(this.overlay, screenshot);
