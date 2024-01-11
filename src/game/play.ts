@@ -3,11 +3,10 @@ import { ManualMovement} from "../jetlag/Components/Movement";
 import { BoxBody} from '../jetlag/Components/RigidBody';
 import { Goodie, Hero} from "../jetlag/Components/Role";
 import { Actor } from "../jetlag/Entities/Actor";
-import { KeyCodes } from "../jetlag/Services/Keyboard";
 import { stage } from "../jetlag/Stage";
 import { createMerchant } from './EntitySheet';
 import { OuterWallConstructor } from './level';
-import { merchantPurchase, movingCollision } from './mechanism';
+import { heroControl, merchantPurchase} from './common';
 
 export function gameBuilder(level: number){
   OuterWallConstructor();
@@ -25,22 +24,7 @@ export function gameBuilder(level: number){
       initialPurchaseGold: 10,
     }
   });
-  stage.keyboard.setKeyUpHandler(KeyCodes.KEY_UP, () => ((hero.movement as ManualMovement).updateYVelocity(0)));
-  stage.keyboard.setKeyUpHandler(KeyCodes.KEY_DOWN, () => ((hero.movement as ManualMovement).updateYVelocity(0)));
-  stage.keyboard.setKeyUpHandler(KeyCodes.KEY_LEFT, () => ((hero.movement as ManualMovement).updateXVelocity(0)));
-  stage.keyboard.setKeyUpHandler(KeyCodes.KEY_RIGHT, () => {((hero.movement as ManualMovement).updateXVelocity(0))});
-  stage.keyboard.setKeyDownHandler(KeyCodes.KEY_UP, () => {
-    movingCollision(hero.rigidBody.getCenter().x,hero.rigidBody.getCenter().y-1,hero);
-  });
-  stage.keyboard.setKeyDownHandler(KeyCodes.KEY_LEFT, () => {
-    movingCollision(hero.rigidBody.getCenter().x-1,hero.rigidBody.getCenter().y,hero);
-  });
-  stage.keyboard.setKeyDownHandler(KeyCodes.KEY_RIGHT, () => {
-    movingCollision(hero.rigidBody.getCenter().x+1,hero.rigidBody.getCenter().y,hero);
-  });
-  stage.keyboard.setKeyDownHandler(KeyCodes.KEY_DOWN, () => {
-    movingCollision(hero.rigidBody.getCenter().x,hero.rigidBody.getCenter().y+1,hero);
-  });
+  heroControl(hero);
   createMerchant(5.5,1.5);
   let hs = new Actor({
     appearance: new ImageSprite({ width: 1, height: 1, img: "holyShield.png" }),

@@ -1,8 +1,8 @@
 
 import { Actor } from "../jetlag/Entities/Actor";
-import { FilledBox, ImageSprite, TextSprite } from "../jetlag/Components/Appearance";
+import { FilledBox } from "../jetlag/Components/Appearance";
 import { stage } from "../jetlag/Stage";
-import { BoxBody, CircleBody } from "../jetlag/Components/RigidBody";
+import { BoxBody } from "../jetlag/Components/RigidBody";
 import { splashBuilder } from "./splash";
 
 /**

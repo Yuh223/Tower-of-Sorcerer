@@ -1,16 +1,5 @@
-import { AnimatedSprite, FilledBox, ImageSprite, TextSprite } from '../jetlag/Components/Appearance';
-import { ChaseMovement, GravityMovement, ManualMovement, Path, PathMovement, ProjectileMovement, TiltMovement } from "../jetlag/Components/Movement";
-import { BoxBody, CircleBody, RigidBodyComponent } from '../jetlag/Components/RigidBody';
-import { Destination, Enemy, Goodie, Hero, Obstacle, Projectile } from "../jetlag/Components/Role";
-import { AnimationSequence, AnimationState, JetLagGameConfig, Sides } from "../jetlag/Config";
-import { Actor } from "../jetlag/Entities/Actor";
-import { Scene } from '../jetlag/Entities/Scene';
-import { KeyCodes } from "../jetlag/Services/Keyboard";
-import { initializeAndLaunch, stage } from "../jetlag/Stage";
-import { calculation, checkfight, fight } from './battle';
-import { loseMessage, winMessage } from "./common";
-import { createGreenSlime, createMerchant, createRedSlime } from './EntitySheet';
-import { OuterWallConstructor } from './level';
+import { JetLagGameConfig} from "../jetlag/Config";
+import { initializeAndLaunch} from "../jetlag/Stage";
 import { splashBuilder } from './splash';
 
 
@@ -32,16 +21,6 @@ class Config implements JetLagGameConfig {
     imageNames = ["hero.json","terrains.json","items.json","enemies.json","npcs.json","ground.png"];
 }
 
-
-/**
- * Build the levels of the game.
- *
- * @param level Which level should be displayed
- */
-function builder(level: number) {
-  
-
-}
 
     
 
