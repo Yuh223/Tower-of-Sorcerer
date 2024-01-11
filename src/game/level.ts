@@ -2,6 +2,7 @@ import { ImageSprite } from "../jetlag/Components/Appearance";
 import { BoxBody } from "../jetlag/Components/RigidBody";
 import { Obstacle } from "../jetlag/Components/Role";
 import { Actor } from "../jetlag/Entities/Actor";
+import { createGreenSlime, createRedSlime } from "./EntitySheet";
 
 
 
@@ -13,9 +14,9 @@ export function OuterWallConstructor(){
       "#           #",
       "#           #",
       "#           #",
+      "#   r       #",
       "#           #",
-      "#           #",
-      "#           #",
+      "#   g       #",
       "#           #",
       "#           #",
       "#           #",
@@ -30,6 +31,12 @@ export function OuterWallConstructor(){
             appearance: new ImageSprite({ width: 1, height: 1, img: "wall_1.png" }),
             role: new Obstacle(),
           });
+        }
+        if (mazeLayout[row][col] === "g") {
+          createGreenSlime(col + 0.5,row + 0.5);
+        }
+        if (mazeLayout[row][col] === "r") {
+          createRedSlime(col + 0.5,row + 0.5);
         }
       }
     }
