@@ -1,0 +1,100 @@
+{
+	"frames": {
+	  "yellow_gate_0.png": {
+		"frame": {"x":0, "y":128, "w":32, "h":32},
+		"rotated": false,
+		"trimmed": false,
+		"spriteSourceSize": {"x":0, "y":0, "w":32, "h":32},
+		"sourceSize": {"w":32, "h":32}
+	  },
+      "yellow_gate_1.png": {
+		"frame": {"x":32, "y":128, "w":32, "h":32},
+		"rotated": false,
+		"trimmed": false,
+		"spriteSourceSize": {"x":0, "y":0, "w":32, "h":32},
+		"sourceSize": {"w":32, "h":32}
+	  },
+      "yellow_gate_2.png": {
+		"frame": {"x":64, "y":128, "w":32, "h":32},
+		"rotated": false,
+		"trimmed": false,
+		"spriteSourceSize": {"x":0, "y":0, "w":32, "h":32},
+		"sourceSize": {"w":32, "h":32}
+	  },
+      "yellow_gate_3.png": {
+		"frame": {"x":96, "y":128, "w":32, "h":32},
+		"rotated": false,
+		"trimmed": false,
+		"spriteSourceSize": {"x":0, "y":0, "w":32, "h":32},
+		"sourceSize": {"w":32, "h":32}
+	  },
+      "blue_gate_0.png": {
+		"frame": {"x":0, "y":160, "w":32, "h":32},
+		"rotated": false,
+		"trimmed": false,
+		"spriteSourceSize": {"x":0, "y":0, "w":32, "h":32},
+		"sourceSize": {"w":32, "h":32}
+	  },
+      "blue_gate_1.png": {
+		"frame": {"x":32, "y":160, "w":32, "h":32},
+		"rotated": false,
+		"trimmed": false,
+		"spriteSourceSize": {"x":0, "y":0, "w":32, "h":32},
+		"sourceSize": {"w":32, "h":32}
+	  },
+      "blue_gate_2.png": {
+		"frame": {"x":64, "y":160, "w":32, "h":32},
+		"rotated": false,
+		"trimmed": false,
+		"spriteSourceSize": {"x":0, "y":0, "w":32, "h":32},
+		"sourceSize": {"w":32, "h":32}
+	  },
+      "blue_gate_3.png": {
+		"frame": {"x":96, "y":160, "w":32, "h":32},
+		"rotated": false,
+		"trimmed": false,
+		"spriteSourceSize": {"x":0, "y":0, "w":32, "h":32},
+		"sourceSize": {"w":32, "h":32}
+	  },
+	  "red_gate_0.png": {
+		"frame": {"x":0, "y":192, "w":32, "h":32},
+		"rotated": false,
+		"trimmed": false,
+		"spriteSourceSize": {"x":0, "y":0, "w":32, "h":32},
+		"sourceSize": {"w":32, "h":32}
+	  },
+      "red_gate_1.png": {
+		"frame": {"x":32, "y":192, "w":32, "h":32},
+		"rotated": false,
+		"trimmed": false,
+		"spriteSourceSize": {"x":0, "y":0, "w":32, "h":32},
+		"sourceSize": {"w":32, "h":32}
+	  },
+      "red_gate_2.png": {
+		"frame": {"x":64, "y":192, "w":32, "h":32},
+		"rotated": false,
+		"trimmed": false,
+		"spriteSourceSize": {"x":0, "y":0, "w":32, "h":32},
+		"sourceSize": {"w":32, "h":32}
+	  },
+      "red_gate_3.png": {
+		"frame": {"x":96, "y":192, "w":32, "h":32},
+		"rotated": false,
+		"trimmed": false,
+		"spriteSourceSize": {"x":0, "y":0, "w":32, "h":32},
+		"sourceSize": {"w":32, "h":32}
+	  }
+	},
+	"animations": {
+	  "yellow_gate": ["yellow_gate_1.png", "yellow_gate_2.png", "yellow_gate_3.png"],
+	  "blue_gate": ["blue_gate_1.png", "blue_gate_2.png", "blue_gate_3.png"],
+	  "red_gate": ["red_gate_1.png", "red_gate_2.png", "red_gate_3.png"]
+	},
+	"meta": {
+	  "version": "1.1",
+	  "image": "animates.png",
+	  "format": "RGBA8888",
+	  "size": {"w":128, "h":864},
+	  "scale": "1"
+	}
+  }

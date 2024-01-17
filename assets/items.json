@@ -49,6 +49,41 @@
 		"spriteSourceSize": {"x":0, "y":0, "w":32, "h":32},
 		"sourceSize": {"w":32, "h":32}
 	  },
+	  "ironlSword.png": {
+		"frame": {"x":0, "y":1600, "w":32, "h":32},
+		"rotated": false,
+		"trimmed": false,
+		"spriteSourceSize": {"x":0, "y":0, "w":32, "h":32},
+		"sourceSize": {"w":32, "h":32}
+	  },
+	  "silverSword.png": {
+		"frame": {"x":0, "y":1632, "w":32, "h":32},
+		"rotated": false,
+		"trimmed": false,
+		"spriteSourceSize": {"x":0, "y":0, "w":32, "h":32},
+		"sourceSize": {"w":32, "h":32}
+	  },
+	  "knightSword.png": {
+		"frame": {"x":0, "y":1664, "w":32, "h":32},
+		"rotated": false,
+		"trimmed": false,
+		"spriteSourceSize": {"x":0, "y":0, "w":32, "h":32},
+		"sourceSize": {"w":32, "h":32}
+	  },
+	  "mithrilSword.png": {
+		"frame": {"x":0, "y":1696, "w":32, "h":32},
+		"rotated": false,
+		"trimmed": false,
+		"spriteSourceSize": {"x":0, "y":0, "w":32, "h":32},
+		"sourceSize": {"w":32, "h":32}
+	  },
+	  "holySword.png": {
+		"frame": {"x":0, "y":1728, "w":32, "h":32},
+		"rotated": false,
+		"trimmed": false,
+		"spriteSourceSize": {"x":0, "y":0, "w":32, "h":32},
+		"sourceSize": {"w":32, "h":32}
+	  },
       "ironShield.png": {
 		"frame": {"x":0, "y":1760, "w":32, "h":32},
 		"rotated": false,

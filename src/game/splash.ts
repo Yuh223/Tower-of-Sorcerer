@@ -1,9 +1,13 @@
-import { FilledBox, TextSprite } from "../jetlag/Components/Appearance";
+import { FilledBox, ImageSprite, TextSprite } from "../jetlag/Components/Appearance";
 import { Actor } from "../jetlag/Entities/Actor";
 import { stage } from "../jetlag/Stage";
 import { BoxBody } from "../jetlag/Components/RigidBody";
 import { helpBuilder } from "./help";
 import { gameBuilder } from "./play";
+import { Hero } from "../jetlag/Components/Role";
+import { SStore } from "./session";
+
+
 
 /**
  * splashBuilder will draw the scene that we see when the game starts. In our
@@ -15,7 +19,11 @@ import { gameBuilder } from "./play";
  * @param level Which splash screen should be displayed
  */
 export function splashBuilder(_level: number) {
-
+  //this is where I should construct the session object. 
+  if (!stage.storage.getSession("session_state"))
+    stage.storage.setSession("session_state", new SStore());
+  let sstore = stage.storage.getSession("session_state") as SStore;
+  sstore.isWin = true;
   // Paint the background white
   stage.backgroundColor = "#FFFFFF";
 

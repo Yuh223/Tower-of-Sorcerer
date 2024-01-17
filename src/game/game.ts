@@ -11,14 +11,14 @@ class Config implements JetLagGameConfig {
     pixelMeterRatio = 100;
     screenDimensions = { width: 1900, height: 1300 };
     adaptToScreenSize = true;
-    canVibrate = true;
+    canVibrate = false;
     forceAccelerometerOff = true;
     storageKey = "--no-key--";
     hitBoxes = true;
     resourcePrefix = "./assets/";
     musicNames = [];
     soundNames = [];
-    imageNames = ["hero.json","terrains.json","items.json","enemies.json","npcs.json","ground.png"];
+    imageNames = ["hero.json","terrains.json","items.json","enemies.json","animates.json","npcs.json","ground.png"];
 }
 
 

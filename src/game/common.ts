@@ -1,12 +1,13 @@
-import { FilledBox, ImageSprite, TextSprite } from "../jetlag/Components/Appearance";
+import { FilledBox, ImageSprite, TextSprite, AppearanceComponent, AnimatedSprite } from '../jetlag/Components/Appearance';
 import { ManualMovement } from "../jetlag/Components/Movement";
 import { BoxBody } from "../jetlag/Components/RigidBody";
-import { Obstacle } from "../jetlag/Components/Role";
+import { AnimationSequence, AnimationState } from '../jetlag/Config';
 import { Actor } from "../jetlag/Entities/Actor";
 import { Scene } from "../jetlag/Entities/Scene";
 import { KeyCodes } from "../jetlag/Services/Keyboard";
 import { stage } from "../jetlag/Stage";
 import { calculation, checkfight } from "./battle";
+import { SStore } from "./session";
 
 /**
  * Draw a mute button
@@ -44,78 +45,6 @@ export function drawMuteButton(cfg: { cx: number, cy: number, width: number, hei
   };
 }
 
-/** Draw a bounding box that surrounds the default world viewport */
-function boundingBox() {
-    // Draw a box around the world
-    let t = new Actor({
-      appearance: new FilledBox({ width: 16, height: .1, fillColor: "#ff0000" }),
-      rigidBody: new BoxBody({ cx: 8, cy: -.05, width: 16, height: .1 }),
-      role: new Obstacle(),
-    });
-    let b = new Actor({
-      appearance: new FilledBox({ width: 16, height: .1, fillColor: "#ff0000" }),
-      rigidBody: new BoxBody({ cx: 8, cy: 9.05, width: 16, height: .1 }),
-      role: new Obstacle(),
-    });
-    let l = new Actor({
-      appearance: new FilledBox({ width: .1, height: 9, fillColor: "#ff0000" }),
-      rigidBody: new BoxBody({ cx: -.05, cy: 4.5, width: .1, height: 9 }),
-      role: new Obstacle(),
-    });
-    let r = new Actor({
-      appearance: new FilledBox({ width: .1, height: 9, fillColor: "#ff0000" }),
-      rigidBody: new BoxBody({ cx: 16.05, cy: 4.5, width: .1, height: 9 }),
-      role: new Obstacle(),
-    }); 
-    // Return the four sides as an object with fields "t", "b", "l", and "r" 
-    // (for top/bottom/left/right)
-    return { t, b, l, r };
-  }
-  
-  /**
-   * Enable Tilt, and set up arrow keys to simulate it
-   *
-   * @param xMax  The maximum X force
-   * @param yMax  The maximum Y force
-   */
-  function enableTilt(xMax: number, yMax: number) {
-    stage.tilt.tiltMax.Set(xMax, yMax);
-    if (!stage.accelerometer.tiltSupported) {
-      stage.keyboard.setKeyUpHandler(KeyCodes.KEY_UP, () => (stage.accelerometer.accel.y = 0));
-      stage.keyboard.setKeyUpHandler(KeyCodes.KEY_DOWN, () => (stage.accelerometer.accel.y = 0));
-      stage.keyboard.setKeyUpHandler(KeyCodes.KEY_LEFT, () => (stage.accelerometer.accel.x = 0));
-      stage.keyboard.setKeyUpHandler(KeyCodes.KEY_RIGHT, () => (stage.accelerometer.accel.x = 0));
-      stage.keyboard.setKeyDownHandler(KeyCodes.KEY_UP, () => (stage.accelerometer.accel.y = -5));
-      stage.keyboard.setKeyDownHandler(KeyCodes.KEY_DOWN, () => (stage.accelerometer.accel.y = 5));
-      stage.keyboard.setKeyDownHandler(KeyCodes.KEY_LEFT, () => (stage.accelerometer.accel.x = -5));
-      stage.keyboard.setKeyDownHandler(KeyCodes.KEY_RIGHT, () => (stage.accelerometer.accel.x = 5));
-    }
-  }
-  
-  /** Draw a bounding box that surrounds an extended (32m) world viewport */
-  function wideBoundingBox() {
-    // Draw a box around the world
-    new Actor({
-      appearance: new FilledBox({ width: 32, height: .1, fillColor: "#ff0000" }),
-      rigidBody: new BoxBody({ cx: 16, cy: -.05, width: 32, height: .1 }),
-      role: new Obstacle(),
-    });
-    new Actor({
-      appearance: new FilledBox({ width: 32, height: .1, fillColor: "#ff0000" }),
-      rigidBody: new BoxBody({ cx: 16, cy: 9.05, width: 32, height: .1 }),
-      role: new Obstacle(),
-    });
-    new Actor({
-      appearance: new FilledBox({ width: .1, height: 9, fillColor: "#ff0000" }),
-      rigidBody: new BoxBody({ cx: -.05, cy: 4.5, width: .1, height: 9 }),
-      role: new Obstacle(),
-    });
-    new Actor({
-      appearance: new FilledBox({ width: .1, height: 9, fillColor: "#ff0000" }),
-      rigidBody: new BoxBody({ cx: 32.05, cy: 4.5, width: .1, height: 9 }),
-      role: new Obstacle(),
-    });
-  }
 
   /**
  * Create an overlay (blocking all game progress) consisting of a black screen
@@ -194,8 +123,8 @@ export function merchantPurchase(hero:Actor) {
     new Actor({
       appearance: new FilledBox({ width: 2, height: 1, fillColor: "#000000" }),
       rigidBody: new BoxBody({ cx: 6.5, cy: 4.5, width: 2, height: 1 }, { scene: overlay }),
-      gestures: { tap: () => { if(hero.extra.gold > hero.extra.initialPurchaseGold) 
-          {hero.extra.hp += 800; hero.extra.gold -= hero.extra.initialPurchaseGold; hero.extra.initialPurchaseGold += 1;}
+      gestures: { tap: () => { if(hero.extra.gold > hero.extra.PurchaseGold) 
+          {hero.extra.hp += 800; hero.extra.gold -= hero.extra.PurchaseGold; hero.extra.PurchaseGold += 1;}
           else{alert("Gold not enough!");}
           return true; } },
     });
@@ -207,8 +136,8 @@ export function merchantPurchase(hero:Actor) {
     new Actor({
       appearance: new FilledBox({ width: 2, height: 1, fillColor: "#000000" }),
       rigidBody: new BoxBody({ cx: 6.5, cy: 6, width: 2, height: 1 }, { scene: overlay }),
-      gestures: { tap: () => { if(hero.extra.gold > hero.extra.initialPurchaseGold) 
-          {hero.extra.atk += 1; hero.extra.gold -= hero.extra.initialPurchaseGold; hero.extra.initialPurchaseGold += 1;} 
+      gestures: { tap: () => { if(hero.extra.gold > hero.extra.PurchaseGold) 
+          {hero.extra.atk += 1; hero.extra.gold -= hero.extra.PurchaseGold; hero.extra.PurchaseGold += 1;} 
           else{alert("Gold not enough!");}
           return true; } },
     });
@@ -220,8 +149,8 @@ export function merchantPurchase(hero:Actor) {
     new Actor({
       appearance: new FilledBox({ width: 2, height: 1, fillColor: "#000000" }),
       rigidBody: new BoxBody({ cx: 6.5, cy: 7.5, width: 2, height: 1 }, { scene: overlay }),
-      gestures: { tap: () => { if(hero.extra.gold > hero.extra.initialPurchaseGold) 
-          {hero.extra.def += 2; hero.extra.gold -= hero.extra.initialPurchaseGold; hero.extra.initialPurchaseGold += 1;} 
+      gestures: { tap: () => { if(hero.extra.gold > hero.extra.PurchaseGold) 
+          {hero.extra.def += 2; hero.extra.gold -= hero.extra.PurchaseGold; hero.extra.PurchaseGold += 1;} 
           else{alert("Gold not enough!");}
           return true; } },
     });
@@ -247,7 +176,7 @@ export function merchantPurchase(hero:Actor) {
     });
     new Actor({
       appearance: new TextSprite({ center: true, face: "TimesNewRoman", color: "#140000", size: 30, z: 1 }, 
-      () => `HP: ${hero.extra.hp}\nATK: ${hero.extra.atk}\nDEF: ${hero.extra.def}\nGold: ${hero.extra.gold}\nExp: ${hero.extra.exp}`),
+      () => `HP: ${hero.extra.hp}\nATK: ${hero.extra.atk}\nDEF: ${hero.extra.def}\nGold: ${hero.extra.gold}\nExp: ${hero.extra.exp}\nYellowKey: ${hero.extra.pocket.yellowKey}\nBlueKey: ${hero.extra.pocket.blueKey}\nRedKey: ${hero.extra.pocket.redKey}`),
       rigidBody: new BoxBody({ cx: 16, cy: 3, width: .1, height: .1 }, { scene: overlay }),
     });
     
@@ -258,12 +187,49 @@ export function merchantPurchase(hero:Actor) {
   }, true);
 }
 
-export  function movingCollision(cx:number,cy:number,hero:Actor){
+export function movingCollision(cx:number,cy:number,hero:Actor){
+  let sstore = stage.storage.getSession("session_state") as SStore;
   for (let o of stage.world.physics.actorsAt({x:cx, y:cy})) { 
     if(o.extra.isMerchant){
       merchantPurchase(hero);
     } 
+    if(o.extra.isUp){
+      //In the session, set that to win.
+      sstore.isWin=true;
+      stage.score.winLevel();
+    }else if (o.extra.isDown){
+      //In the session, set that to lose.
+      sstore.isWin=false;
+      stage.score.loseLevel();
+    }
     if (o.extra.isWall) return;
+    if(o.extra.isGate){
+      if(o.extra.color == "yellow"){
+        if(hero.extra.pocket.yellowKey>=1){
+          hero.extra.pocket.yellowKey-=1;
+          (o.appearance as AnimatedSprite).animations.set(AnimationState.IDLE_E,AnimationSequence.makeSimple({
+            timePerFrame:750,
+            repeat:true,
+            images: ["yellow_gate_1.png", "yellow_gate_2.png", "yellow_gate_3.png"]
+          }));
+          (o.appearance as AnimatedSprite).restartCurrentAnimation();
+          console.log("hi");
+          //o.enabled = false;
+        }else return;
+      }
+      if(o.extra.color == "blue"){
+        if(hero.extra.pocket.blueKey>=1){
+          hero.extra.pocket.blueKey-=1;
+          o.enabled = false;
+        }else return;
+      }
+      if(o.extra.color == "red"){
+        if(hero.extra.pocket.redKey>=1){
+          hero.extra.pocket.redKey-=1;
+          o.enabled = false;
+        }else return;
+      }
+    }
     else if (o.extra.isEnemy) {
       if(checkfight(hero,o)){
         return;
@@ -272,12 +238,28 @@ export  function movingCollision(cx:number,cy:number,hero:Actor){
         hero.extra.gold += o.extra.gold;
         hero.extra.exp += o.extra.exp;
         o.enabled = false;
+
       }
     }else if (o.extra.isItem){
-      if(o.extra.isShield){
+      if(o.extra.isKey){
+        if(o.extra.isYellow){
+          hero.extra.pocket.yellowKey+=1;
+        }
+        if(o.extra.isBlue){
+          hero.extra.pocket.blueKey+=1;
+        }
+        if(o.extra.isRed){
+          hero.extra.pocket.redKey+=1;
+        }
+      }else{
+        hero.extra.atk = hero.extra.atk + o.extra.atk;
         hero.extra.def = hero.extra.def + o.extra.def;
-        o.enabled = false;
+        hero.extra.hp = hero.extra.hp + o.extra.hp;
+        if(o.extra.magicResist){
+          hero.extra.magicResist = true;
+        }
       }
+      o.enabled = false;
     }
     
   }
@@ -285,11 +267,12 @@ export  function movingCollision(cx:number,cy:number,hero:Actor){
 }
 
 export function heroControl(hero: Actor){
-  stage.keyboard.setKeyUpHandler(KeyCodes.KEY_UP, () => ((hero.movement as ManualMovement).updateYVelocity(0)));
-  stage.keyboard.setKeyUpHandler(KeyCodes.KEY_DOWN, () => ((hero.movement as ManualMovement).updateYVelocity(0)));
-  stage.keyboard.setKeyUpHandler(KeyCodes.KEY_LEFT, () => ((hero.movement as ManualMovement).updateXVelocity(0)));
-  stage.keyboard.setKeyUpHandler(KeyCodes.KEY_RIGHT, () => {((hero.movement as ManualMovement).updateXVelocity(0))});
   stage.keyboard.setKeyDownHandler(KeyCodes.KEY_UP, () => {
+    (hero.appearance as AnimatedSprite).animations.set(AnimationState.WALK_N,AnimationSequence.makeSimple({
+      timePerFrame: 75,
+      repeat:true,
+      images:["hero_walk_u_1.png", "hero_walk_u_2.png", "hero_walk_u_3.png"],
+    }));
     movingCollision(hero.rigidBody.getCenter().x,hero.rigidBody.getCenter().y-1,hero);
   });
   stage.keyboard.setKeyDownHandler(KeyCodes.KEY_LEFT, () => {
