@@ -4,7 +4,7 @@ import { Destination, Hero, Obstacle } from "../jetlag/Components/Role";
 import { AnimationSequence, AnimationState } from "../jetlag/Config";
 import { Actor } from "../jetlag/Entities/Actor";
 import { stage } from "../jetlag/Stage";
-import { createGreenSlime, createMerchant, createRedSlime } from "./EntitySheet";
+import { createGreenSlime, createMerchant, createNPC, createRedSlime } from "./EntitySheet";
 import { heroControl } from "./common";
 import { SStore } from "./session";
 
@@ -18,13 +18,13 @@ export function gate(x:number,y:number, gate:string,color:string){
     extra:{
       isGate:true,
       color: color,
-      iswall:true,
+      isWall:false,
     },
   });
 }
 
 
-export function levelConstructor(mazeLayout:string[]){
+export function levelConstructor(mazeLayout:string[][]){
   let sstore = stage.storage.getSession("session_state") as SStore;
   // Create walls and goodies from the `mazeLayout`
   for (let row = 0; row < mazeLayout.length; row++) {
@@ -303,6 +303,9 @@ export function levelConstructor(mazeLayout:string[]){
           extra: sstore.extra,
         });
         heroControl(hero);
+      }
+      if (mazeLayout[row][col] === "N") {
+        createNPC(col + 0.5,row + 0.5);
       }
     }
   }

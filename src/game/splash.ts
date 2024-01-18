@@ -1,11 +1,14 @@
-import { FilledBox, ImageSprite, TextSprite } from "../jetlag/Components/Appearance";
+import { AnimatedSprite, FilledBox, ImageSprite, TextSprite } from "../jetlag/Components/Appearance";
 import { Actor } from "../jetlag/Entities/Actor";
 import { stage } from "../jetlag/Stage";
-import { BoxBody } from "../jetlag/Components/RigidBody";
+import { BoxBody, CircleBody } from "../jetlag/Components/RigidBody";
 import { helpBuilder } from "./help";
 import { gameBuilder } from "./play";
-import { Hero } from "../jetlag/Components/Role";
+import { Hero, Obstacle } from "../jetlag/Components/Role";
 import { SStore } from "./session";
+import { AnimationSequence, AnimationState } from "../jetlag/Config";
+import { ManualMovement } from "../jetlag/Components/Movement";
+import { KeyCodes } from "../jetlag/Services/Keyboard";
 
 
 

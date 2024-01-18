@@ -21,6 +21,13 @@
 		"spriteSourceSize": {"x":0, "y":0, "w":32, "h":32},
 		"sourceSize": {"w":32, "h":32}
 	  },
+	  "book.png": {
+		"frame": {"x":0, "y":288, "w":32, "h":32},
+		"rotated": false,
+		"trimmed": false,
+		"spriteSourceSize": {"x":0, "y":0, "w":32, "h":32},
+		"sourceSize": {"w":32, "h":32}
+	  },
       "atkGem.png": {
 		"frame": {"x":0, "y":512, "w":32, "h":32},
 		"rotated": false,

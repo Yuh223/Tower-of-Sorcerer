@@ -1,5 +1,6 @@
 /** This is for Session Storage */
 export class SStore {
+    changed = false;
     isWin = true;
     extra = {
       atk: 10,
@@ -13,36 +14,48 @@ export class SStore {
         yellowKey:0,
         blueKey:0,
         redKey:0,
-      }
+      },
+      fieldBook:false,
     };
-    mazeLayout1 = [
-        "#############",
-        "#UL         #",
-        "#   ##6#### #",
-        "#   #     # #",
-        "#####5### # #",
-        "# M #r   g# #",
-        "#   ###4### #",
-        "#           #",
-        "#     #######",
-        "#GFRB W     #",
-        "######123   #",
-        "#!@$%^&*()- #",
-        "#############",
-    ];
-    mazeLayout2 = [
-        "#############",
-        "#DW #       #",
-        "#   #       #",
-        "#   #       #",
-        "## ##  # #  #",
-        "#   #  # #  #",
-        "#   ######  #",
-        "#   #    #  #",
-        "#   ### ##  #",
-        "#           #",
-        "#####       #",
-        "#           #",
-        "#############",
-      ];
+    levels =1;
+    level1 = convertTo2DArray(mazeLayout1);
+    level2 = convertTo2DArray(mazeLayout2);
+}
+function convertTo2DArray(layout: string[]): string[][] {
+  let layout2D: string[][] = [];
+  for (let i = 0; i < layout.length; i++) {
+      layout2D.push(layout[i].split(''));
   }
+  return layout2D;
+}
+
+const mazeLayout1 = [
+  "#############",
+  "#UL         #",
+  "#   ##6#### #",
+  "#   #     # #",
+  "#####5### # #",
+  "# M #r   g# #",
+  "#N  ###4### #",
+  "#           #",
+  "#     #######",
+  "#GFRB W     #",
+  "######123   #",
+  "#!@$%^&*()- #",
+  "#############",
+];
+const mazeLayout2 = [
+  "#############",
+  "#DW #       #",
+  "#   #       #",
+  "#   #       #",
+  "## ##  # #  #",
+  "#   #  # #  #",
+  "#   ######  #",
+  "#   #    #  #",
+  "#   ### ##  #",
+  "#           #",
+  "#####       #",
+  "#           #",
+  "#############",
+];

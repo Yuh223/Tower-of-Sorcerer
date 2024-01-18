@@ -1,5 +1,4 @@
 import { FilledBox, ImageSprite, TextSprite, AppearanceComponent, AnimatedSprite } from '../jetlag/Components/Appearance';
-import { ManualMovement } from "../jetlag/Components/Movement";
 import { BoxBody } from "../jetlag/Components/RigidBody";
 import { AnimationSequence, AnimationState } from '../jetlag/Config';
 import { Actor } from "../jetlag/Entities/Actor";
@@ -8,6 +7,8 @@ import { KeyCodes } from "../jetlag/Services/Keyboard";
 import { stage } from "../jetlag/Stage";
 import { calculation, checkfight } from "./battle";
 import { SStore } from "./session";
+import { ISound } from '../jetlag/Services/AudioLibrary';
+import { TimedEvent } from '../jetlag/Systems/Timer';
 
 /**
  * Draw a mute button
@@ -202,31 +203,41 @@ export function movingCollision(cx:number,cy:number,hero:Actor){
       sstore.isWin=false;
       stage.score.loseLevel();
     }
-    if (o.extra.isWall) return;
     if(o.extra.isGate){
       if(o.extra.color == "yellow"){
         if(hero.extra.pocket.yellowKey>=1){
           hero.extra.pocket.yellowKey-=1;
           (o.appearance as AnimatedSprite).animations.set(AnimationState.IDLE_E,AnimationSequence.makeSimple({
-            timePerFrame:750,
-            repeat:true,
+            timePerFrame:75,
+            repeat:false,
             images: ["yellow_gate_1.png", "yellow_gate_2.png", "yellow_gate_3.png"]
           }));
-          (o.appearance as AnimatedSprite).restartCurrentAnimation();
-          console.log("hi");
-          //o.enabled = false;
+          openGate(o);
+          sstore.level1[Math.round(o.rigidBody.getCenter().y*10)/10-0.5][Math.round(o.rigidBody.getCenter().x*10)/10-0.5] = " ";
         }else return;
       }
       if(o.extra.color == "blue"){
         if(hero.extra.pocket.blueKey>=1){
           hero.extra.pocket.blueKey-=1;
-          o.enabled = false;
+          (o.appearance as AnimatedSprite).animations.set(AnimationState.IDLE_E,AnimationSequence.makeSimple({
+            timePerFrame:75,
+            repeat:false,
+            images: ["blue_gate_1.png", "blue_gate_2.png", "blue_gate_3.png"]
+          }));
+          openGate(o);
+          sstore.level1[Math.round(o.rigidBody.getCenter().y*10)/10-0.5][Math.round(o.rigidBody.getCenter().x*10)/10-0.5] = " ";
         }else return;
       }
       if(o.extra.color == "red"){
         if(hero.extra.pocket.redKey>=1){
           hero.extra.pocket.redKey-=1;
-          o.enabled = false;
+          (o.appearance as AnimatedSprite).animations.set(AnimationState.IDLE_E,AnimationSequence.makeSimple({
+            timePerFrame:75,
+            repeat:false,
+            images: ["red_gate_1.png", "red_gate_2.png", "red_gate_3.png"]
+          }));
+          openGate(o);
+          sstore.level1[Math.round(o.rigidBody.getCenter().y*10)/10-0.5][Math.round(o.rigidBody.getCenter().x*10)/10-0.5] = " ";
         }else return;
       }
     }
@@ -238,8 +249,14 @@ export function movingCollision(cx:number,cy:number,hero:Actor){
         hero.extra.gold += o.extra.gold;
         hero.extra.exp += o.extra.exp;
         o.enabled = false;
-
+        sstore.changed =true;
       }
+    }else if (o.extra.isNPC){
+      npcDialogue(o);
+      if(sstore.levels==1){
+        hero.extra.fieldBook = true;
+      }
+      sstore.level1[Math.round(o.rigidBody.getCenter().y*10)/10-0.5][Math.round(o.rigidBody.getCenter().x*10)/10-0.5] = " ";
     }else if (o.extra.isItem){
       if(o.extra.isKey){
         if(o.extra.isYellow){
@@ -260,10 +277,15 @@ export function movingCollision(cx:number,cy:number,hero:Actor){
         }
       }
       o.enabled = false;
+      sstore.changed =true;
     }
-    
+    if (o.extra.isWall) return;
+    if(sstore.changed){
+      sstore.level1[Math.round(o.rigidBody.getCenter().y*10)/10-0.5][Math.round(o.rigidBody.getCenter().x*10)/10-0.5] = " ";
+      sstore.changed =false;
+    }
   }
-  hero.rigidBody.setCenter(cx,cy);
+  hero.rigidBody.setCenter(cx,cy); 
 }
 
 export function heroControl(hero: Actor){
@@ -284,4 +306,56 @@ export function heroControl(hero: Actor){
   stage.keyboard.setKeyDownHandler(KeyCodes.KEY_DOWN, () => {
     movingCollision(hero.rigidBody.getCenter().x,hero.rigidBody.getCenter().y+1,hero);
   });
+}
+function openGate(o:Actor){
+  (o.appearance as AnimatedSprite).restartCurrentAnimation();
+  o.extra.isWall = true;
+  o.extra.isGate = false;
+  stage.world.timer.addEvent(new TimedEvent(0.225,false,()=>{
+    o.enabled = false;
+    o.extra.isWall = false;
+  }));
+}
+
+export function npcDialogue(npc: Actor) {
+  stage.requestOverlay((overlay: Scene, screenshot: ImageSprite | undefined) => {
+    new Actor({ appearance: screenshot!, rigidBody: new BoxBody({ cx: 9.5, cy: 6.5, width: 19, height: 13 }, { scene: overlay }), });
+    new Actor({
+      appearance: new FilledBox({ width: 10, height: 5, fillColor: "#CCE5E5" }),
+      rigidBody: new BoxBody({ cx: 9.5, cy: 6.5, width: 10, height: 5 }, { scene: overlay }),
+      gestures: { tap: () => { stage.clearOverlay(); npc.enabled = false; return true; } },
+    });
+    // npc image
+    let npcIcon = npc.appearance;
+    new Actor({
+      appearance: npcIcon,
+      rigidBody: new BoxBody({ cx: 5, cy: 4.5, width: 1, height: 1 }, { scene: overlay }),
+    });
+
+    // npc dialogue
+    new Actor({
+      appearance: new TextSprite({ center: true, face: "Arial", color: "#000000", size: 24, z: 0 }, npc.extra.dialogue),
+      rigidBody: new BoxBody({ cx: 9.5, cy: 6.5, width: 8, height: 3 }, { scene: overlay }),
+    });
+
+    // npc dialogue
+    new Actor({
+      appearance: new TextSprite({ center: true, face: "Arial", color: "#000000", size: 24, z: 0 }, "click to to continue"),
+      rigidBody: new BoxBody({ cx: 9.5, cy: 8.5, width: 8, height: 3 }, { scene: overlay }),
+    });
+  }, true);
+}
+
+export function fieldBookUI(){
+  stage.requestOverlay((overlay: Scene) => {
+    // 创建纯色背景
+    new Actor({
+      appearance: new FilledBox({ width: 19, height: 13, fillColor: "#F0F0F0" }),
+      rigidBody: new BoxBody({ cx: 9.5, cy: 6.5, width: 19, height: 13 }, { scene: overlay }),
+    });
+
+    // 显示怪物数据
+
+
+  }, true);
 }
