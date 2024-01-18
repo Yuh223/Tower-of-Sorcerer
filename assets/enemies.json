@@ -28,28 +28,28 @@
 		"spriteSourceSize": {"x":0, "y":0, "w":32, "h":32},
 		"sourceSize": {"w":32, "h":32}
 	  },
-      "black_smile_1.png": {
+      "black_slime_1.png": {
 		"frame": {"x":0, "y":64, "w":32, "h":32},
 		"rotated": false,
 		"trimmed": false,
 		"spriteSourceSize": {"x":0, "y":0, "w":32, "h":32},
 		"sourceSize": {"w":32, "h":32}
 	  },
-	  "black_smile_2.png": {
+	  "black_slime_2.png": {
 		"frame": {"x":32, "y":64, "w":32, "h":32},
 		"rotated": false,
 		"trimmed": false,
 		"spriteSourceSize": {"x":0, "y":0, "w":32, "h":32},
 		"sourceSize": {"w":32, "h":32}
 	  },
-      "smile_king_1.png": {
+      "slime_king_1.png": {
 		"frame": {"x":0, "y":96, "w":32, "h":32},
 		"rotated": false,
 		"trimmed": false,
 		"spriteSourceSize": {"x":0, "y":0, "w":32, "h":32},
 		"sourceSize": {"w":32, "h":32}
 	  },
-      "smile_king_2.png": {
+      "slime_king_2.png": {
 		"frame": {"x":32, "y":96, "w":32, "h":32},
 		"rotated": false,
 		"trimmed": false,
@@ -140,14 +140,14 @@
 		"spriteSourceSize": {"x":0, "y":0, "w":32, "h":32},
 		"sourceSize": {"w":32, "h":32}
 	  },
-      "yellow_skeleton_1.png": {
+      "captain_skeleton_1.png": {
 		"frame": {"x":0, "y":320, "w":32, "h":32},
 		"rotated": false,
 		"trimmed": false,
 		"spriteSourceSize": {"x":0, "y":0, "w":32, "h":32},
 		"sourceSize": {"w":32, "h":32}
 	  },
-      "yellow_skeleton_2.png": {
+      "captain_skeleton_2.png": {
 		"frame": {"x":32, "y":320, "w":32, "h":32},
 		"rotated": false,
 		"trimmed": false,
@@ -210,14 +210,14 @@
 		"spriteSourceSize": {"x":0, "y":0, "w":32, "h":32},
 		"sourceSize": {"w":32, "h":32}
 	  },
-      "smile_man_1.png": {
+      "slime_man_1.png": {
 		"frame": {"x":0, "y":480, "w":32, "h":32},
 		"rotated": false,
 		"trimmed": false,
 		"spriteSourceSize": {"x":0, "y":0, "w":32, "h":32},
 		"sourceSize": {"w":32, "h":32}
 	  },
-      "smile_man_2.png": {
+      "slime_man_2.png": {
 		"frame": {"x":32, "y":480, "w":32, "h":32},
 		"rotated": false,
 		"trimmed": false,
@@ -378,14 +378,14 @@
 		"spriteSourceSize": {"x":0, "y":0, "w":32, "h":32},
 		"sourceSize": {"w":32, "h":32}
 	  },
-      "paladin_1.png": {
+      "dark_knight_1.png": {
 		"frame": {"x":0, "y":864, "w":32, "h":32},
 		"rotated": false,
 		"trimmed": false,
 		"spriteSourceSize": {"x":0, "y":0, "w":32, "h":32},
 		"sourceSize": {"w":32, "h":32}
 	  },
-      "paladin_2.png": {
+      "dark_knight_2.png": {
 		"frame": {"x":32, "y":864, "w":32, "h":32},
 		"rotated": false,
 		"trimmed": false,
@@ -452,20 +452,20 @@
 	"animations": {
         "green_slime": ["green_slime_1.png", "green_slime_2.png"],
         "red_slime": ["red_slime_1.png", "red_slime_2.png"],
-        "black_smile": ["black_smile_1.png", "black_smile_2.png"],
-        "smile_king": ["smile_king_1.png", "smile_king_2.png"],
+        "black_slime": ["black_slime_1.png", "black_slime_2.png"],
+        "slime_king": ["slime_king_1.png", "slime_king_2.png"],
         "small_bat": ["small_bat_1.png", "small_bat_2.png"],
         "big_bat": ["big_bat_1.png", "big_bat_2.png"],
         "red_bat": ["red_bat_1.png", "red_bat_2.png"],
         "vampire": ["vampire_1.png", "vampire_2.png"],
         "skeleton": ["skeleton_1.png", "skeleton_2.png"],
         "sword_skeleton": ["sword_skeleton_1.png", "sword_skeleton_2.png"],
-        "yellow_skeleton": ["yellow_skeleton_1.png", "yellow_skeleton_2.png"],
+        "captain_skeleton": ["captain_skeleton_1.png", "captain_skeleton_2.png"],
         "armor_skeleton": ["armor_skeleton_1.png", "armor_skeleton_2.png"],
         "beast": ["beast_1.png", "beast_2.png"],
         "sword_beast": ["sword_beast_1.png", "sword_beast_2.png"],
         "stone": ["stone_1.png", "stone_2.png"],
-        "smile_man": ["smile_man_1.png", "smile_man_2.png"],
+        "slime_man": ["slime_man_1.png", "slime_man_2.png"],
         "mage": ["mage_1.png", "mage_2.png"],
         "arch_mage": ["arch_mage_1.png", "arch_mage_2.png"],
         "witch": ["witch_1.png", "witch_2.png"],
@@ -477,7 +477,7 @@
         "crusader": ["crusader_1.png", "crusader_2.png"],
         "yellow_knight": ["yellow_knight_1.png", "yellow_knight_2.png"],
         "red_knight": ["red_knight_1.png", "red_knight_2.png"],
-        "paladin": ["paladin_1.png", "paladin_2.png"],
+        "dark_knight": ["dark_knight_1.png", "dark_knight_1.png"],
         "demon": ["demon_1.png", "demon_2.png"],
         "sub_demon": ["sub_demon_1.png", "sub_demon_2.png"],
         "grand_sorcerer": ["grand_sorcerer_1.png", "grand_sorcerer_2.png"],

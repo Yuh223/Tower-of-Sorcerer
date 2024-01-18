@@ -2,33 +2,43 @@ import { AnimatedSprite, ImageSprite } from '../jetlag/Components/Appearance';
 import { BoxBody } from '../jetlag/Components/RigidBody';
 import { AnimationSequence, AnimationState } from '../jetlag/Config';
 import { Actor } from '../jetlag/Entities/Actor';
-function monsterBuilder(cx:number, cy:number,img1:string,img2:string,hp:number,atk:number,def:number,gold:number,exp:number){
+import { monsters } from './enemies';
+type MonsterName = keyof typeof monsters;
+
+function monsterBuilder(cx: number, cy: number, monsterName: MonsterName) {
+  const monsterData = monsters[monsterName];
+  
+  if (!monsterData) {
+    console.error("Monster data not found for:", monsterName);
+    return;
+  }
+
   let animation_map = new Map();
-  let a = AnimationSequence.makeSimple({
+  let animation = AnimationSequence.makeSimple({
     timePerFrame: 600,
     repeat: true,
-    images: [img1, img2]
+    images: monsterData.images
   });
-  animation_map.set(AnimationState.IDLE_E, a);
-  let green_slime = new Actor({
-    appearance: new AnimatedSprite({width: 1, height: 1, animations: animation_map }),
-    rigidBody: new BoxBody({ cx, cy, width: 1, height: 1 },{disableRotation:true}),
+  animation_map.set(AnimationState.IDLE_E, animation);
+  let monster = new Actor({
+    appearance: new AnimatedSprite({ width: 1, height: 1, animations: animation_map }),
+    rigidBody: new BoxBody({ cx, cy, width: 1, height: 1 }, { disableRotation: true }),
     extra: {
       isEnemy: true,
-      hp: hp,
-      atk: atk,
-      def: def,
-      gold: gold,
-      exp: exp,
-      
+      hp: monsterData.hp,
+      atk: monsterData.atk,
+      def: monsterData.def,
+      gold: monsterData.gold,
+      exp: monsterData.exp,
     }
-});
+  });
+  return monster;
 }
 export function createGreenSlime(cx:number, cy:number){
-  monsterBuilder(cx,cy,"green_slime_1.png","green_slime_2.png",35,18,1,1,1);
+  return monsterBuilder(cx, cy, "green_slime");
 }
 export function createRedSlime(cx:number, cy:number){
-  monsterBuilder(cx,cy,"red_slime_1.png","red_slime_2.png",45,20,2,2,2);
+  return monsterBuilder(cx, cy, "red_slime");
 }
 export function createMerchant(cx:number, cy:number){
   let animation_map = new Map();
