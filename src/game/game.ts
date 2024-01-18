@@ -14,11 +14,11 @@ class Config implements JetLagGameConfig {
     canVibrate = false;
     forceAccelerometerOff = true;
     storageKey = "--no-key--";
-    hitBoxes = true;
+    hitBoxes = false;
     resourcePrefix = "./assets/";
-    musicNames = [];
-    soundNames = [];
-    imageNames = ["hero.json","terrains.json","items.json","enemies.json","animates.json","npcs.json","ground.png"];
+    musicNames = ["bgm.mp3","opening.mp3"];
+    soundNames = ["attack.mp3","door.mp3","floor.mp3","item.mp3"];
+    imageNames = ["hero.json","terrains.json","items.json","enemies.json","animates.json","npcs.json","ground.png","sprites.json","bg.jpg","Pacifico-Regular.ttf","Salsa-Regular.ttf"];
 }
 
 

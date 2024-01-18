@@ -2,11 +2,19 @@ import { ImageSprite, TextSprite } from '../jetlag/Components/Appearance';
 import { BoxBody} from '../jetlag/Components/RigidBody';
 import { Actor } from "../jetlag/Entities/Actor";
 import { stage } from "../jetlag/Stage";
-import { fieldBookUI, npcDialogue } from './common';
+import { callfieldBook } from './EntitySheet';
+import { drawMuteButton } from './common';
 import { levelConstructor } from './level';
 import { SStore } from './session';
+import { splashBuilder } from './splash';
 
 export function gameBuilder(level: number){
+  drawMuteButton({cx:18.5,cy:12.5,width:1,height:1,scene:stage.hud});
+  new Actor({
+    appearance: new ImageSprite({ width: 1, height: 1, img: "back_arrow.png" }),
+    rigidBody: new BoxBody({ cx:17, cy:12.5, width: 1, height: 1 }),
+    gestures: { tap: () => { stage.switchTo(splashBuilder, level); return true; } }
+  });
   let sstore = stage.storage.getSession("session_state") as SStore;
   stage.score.onWin = { level: level + 1, builder: gameBuilder };
   stage.score.onLose = { level: level - 1, builder: gameBuilder };
@@ -15,19 +23,15 @@ export function gameBuilder(level: number){
     sstore.levels=1;
     levelConstructor(sstore.level1);
     UI(sstore);
+    stage.gameMusic!.play();
   }
   if(level == 2){
     sstore.levels=2;
     levelConstructor(sstore.level2);
     UI(sstore);
+    stage.gameMusic!.play();
   }
-  if(sstore.extra.fieldBook){
-    new Actor({
-      appearance: new ImageSprite({width:1,height:1,img:"book.png"}),
-      rigidBody: new BoxBody({ cx: 14.5, cy: 9.5, width: 1, height: 1 }),
-      gestures: { tap: () => { fieldBookUI(); return true; } },
-    });
-  }
+  callfieldBook();
 }
 export function UI(sstore:SStore){
   new Actor({

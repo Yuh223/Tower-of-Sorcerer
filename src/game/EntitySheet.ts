@@ -2,7 +2,10 @@ import { AnimatedSprite, ImageSprite } from '../jetlag/Components/Appearance';
 import { BoxBody } from '../jetlag/Components/RigidBody';
 import { AnimationSequence, AnimationState } from '../jetlag/Config';
 import { Actor } from '../jetlag/Entities/Actor';
+import { stage } from '../jetlag/Stage';
+import { fieldBookUI } from './fieldBook';
 import { monsters } from './enemies';
+import { SStore } from './session';
 type MonsterName = keyof typeof monsters;
 
 function monsterBuilder(cx: number, cy: number, monsterName: MonsterName) {
@@ -87,7 +90,17 @@ export function createNPC(cx:number, cy:number){
     extra: {
       isNPC: true,
       isWall:true,
-      dialogue: "hello, this is the field book.",
+      dialogue: "Hello, I will help you, here is a illustrated guide through which you can plan your battles.",
     }
   });
+}
+export function callfieldBook(){
+  let sstore = stage.storage.getSession("session_state") as SStore;
+  if(sstore.extra.fieldBook){
+    new Actor({
+      appearance: new ImageSprite({width:1,height:1,img:"book.png"}),
+      rigidBody: new BoxBody({ cx: 14.5, cy: 9.5, width: 1, height: 1 }),
+      gestures: { tap: () => { fieldBookUI(); return true; } },
+    });
+  }
 }

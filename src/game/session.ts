@@ -17,7 +17,7 @@ export class SStore {
       },
       fieldBook:false,
     };
-    currentPage = 1;
+    currentPage = 0;
     levels = 1;
     level1 = convertTo2DArray(mazeLayout1);
     level2 = convertTo2DArray(mazeLayout2);
