@@ -28,4 +28,5 @@ export function helpBuilder(level: number) {
       rigidBody: new BoxBody({ cx: 9.5, cy: 6.5, width: 19, height: 13 }),
       gestures: { tap: () => { stage.switchTo(splashBuilder, 1); return true; } }
     });
+    
 }

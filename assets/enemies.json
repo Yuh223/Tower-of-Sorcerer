@@ -393,42 +393,42 @@
 		"sourceSize": {"w":32, "h":32}
 	  },
       "demon_1.png": {
-		"frame": {"x":0, "y":1376, "w":32, "h":32},
+		"frame": {"x":0, "y":1536, "w":32, "h":32},
 		"rotated": false,
 		"trimmed": false,
 		"spriteSourceSize": {"x":0, "y":0, "w":32, "h":32},
 		"sourceSize": {"w":32, "h":32}
 	  },
       "demon_2.png": {
-		"frame": {"x":32, "y":1376, "w":32, "h":32},
+		"frame": {"x":32, "y":1536, "w":32, "h":32},
 		"rotated": false,
 		"trimmed": false,
 		"spriteSourceSize": {"x":0, "y":0, "w":32, "h":32},
 		"sourceSize": {"w":32, "h":32}
 	  },
       "sub_demon_1.png": {
-		"frame": {"x":0, "y":1408, "w":32, "h":32},
-		"rotated": false,
-		"trimmed": false,
-		"spriteSourceSize": {"x":0, "y":0, "w":32, "h":32},
-		"sourceSize": {"w":32, "h":32}
-	  },
-      "sub_demon_2.png": {
-		"frame": {"x":32, "y":1408, "w":32, "h":32},
-		"rotated": false,
-		"trimmed": false,
-		"spriteSourceSize": {"x":0, "y":0, "w":32, "h":32},
-		"sourceSize": {"w":32, "h":32}
-	  },
-      "grand_sorcerer_1.png": {
 		"frame": {"x":0, "y":1440, "w":32, "h":32},
 		"rotated": false,
 		"trimmed": false,
 		"spriteSourceSize": {"x":0, "y":0, "w":32, "h":32},
 		"sourceSize": {"w":32, "h":32}
 	  },
-      "grand_sorcerer_2.png": {
+      "sub_demon_2.png": {
 		"frame": {"x":32, "y":1440, "w":32, "h":32},
+		"rotated": false,
+		"trimmed": false,
+		"spriteSourceSize": {"x":0, "y":0, "w":32, "h":32},
+		"sourceSize": {"w":32, "h":32}
+	  },
+      "grand_sorcerer_1.png": {
+		"frame": {"x":0, "y":1472, "w":32, "h":32},
+		"rotated": false,
+		"trimmed": false,
+		"spriteSourceSize": {"x":0, "y":0, "w":32, "h":32},
+		"sourceSize": {"w":32, "h":32}
+	  },
+      "grand_sorcerer_2.png": {
+		"frame": {"x":32, "y":1472, "w":32, "h":32},
 		"rotated": false,
 		"trimmed": false,
 		"spriteSourceSize": {"x":0, "y":0, "w":32, "h":32},

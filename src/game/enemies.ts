@@ -1,19 +1,29 @@
-export const monsters = {
+interface MonsterData {
+  images: string[];
+  hp: number;
+  atk: number;
+  def: number;
+  gold: number;
+  exp: number;
+}
+
+
+export const monsters: { [key: string]: MonsterData } = {
   "green_slime": {
     images: ["green_slime_1.png", "green_slime_2.png"],
     hp: 35,
     atk: 18,
     def: 1,
-    gold: 0,
-    exp: 0
+    gold: 1,
+    exp: 1
   },
   "red_slime": {
     images: ["red_slime_1.png", "red_slime_2.png"],
     hp: 45,
     atk: 20,
     def: 2,
-    gold: 0,
-    exp: 0
+    gold: 2,
+    exp: 1
   },
   "mage": {
     images: ["mage_1.png", "mage_2.png"],
@@ -23,6 +33,14 @@ export const monsters = {
     gold: 5,
     exp: 2
   },
+  "arch_mage": {
+    images: ["arch_mage_1.png", "arch_mage_2.png"],
+    hp: 100,
+    atk: 95,
+    def: 30,
+    gold: 22,
+    exp: 8
+  },
   "small_bat": {
     images: ["small_bat_1.png", "small_bat_2.png"],
     hp: 35,
@@ -30,6 +48,14 @@ export const monsters = {
     def: 3,
     gold: 3,
     exp: 1
+  },
+  "big_bat": {
+    images: ["big_bat_1.png", "big_bat_2.png"],
+    hp: 60,
+    atk: 100,
+    def: 8,
+    gold: 12,
+    exp: 4
   },
   "skeleton": {
     images: ["skeleton_1.png", "skeleton_2.png"],
@@ -55,14 +81,6 @@ export const monsters = {
     gold: 8,
     exp: 3
   },
-  "yellow_guard": {
-    images: ["yellow_guard_1.png", "yellow_guard_2.png"],
-    hp: 50,
-    atk: 48,
-    def: 22,
-    gold: 12,
-    exp: 4
-  },
   "captain_skeleton": {
     images: ["captain_skeleton_1.png", "captain_skeleton_2.png"],
     hp: 100,
@@ -71,6 +89,14 @@ export const monsters = {
     gold: 30,
     exp: 10
   },
+  "armor_skeleton": {
+    images: ["armor_skeleton_1.png", "armor_skeleton_2.png"],
+    hp: 220,
+    atk: 180,
+    def: 30,
+    gold: 35,
+    exp: 12
+  },
   "beast": {
     images: ["beast_1.png", "beast_2.png"],
     hp: 260,
@@ -78,22 +104,6 @@ export const monsters = {
     def: 5,
     gold: 18,
     exp: 6
-  },
-  "big_bat": {
-    images: ["big_bat_1.png", "big_bat_2.png"],
-    hp: 60,
-    atk: 100,
-    def: 8,
-    gold: 12,
-    exp: 4
-  },
-  "arch_mage": {
-    images: ["arch_mage_1.png", "arch_mage_2.png"],
-    hp: 100,
-    atk: 95,
-    def: 30,
-    gold: 22,
-    exp: 8
   },
   "sword_beast": {
     images: ["sword_beast_1.png", "sword_beast_2.png"],
@@ -127,13 +137,13 @@ export const monsters = {
     gold: 100,
     exp: 34
   },
-  "armor_skeleton": {
-    images: ["armor_skeleton_1.png", "armor_skeleton_2.png"],
-    hp: 220,
-    atk: 180,
-    def: 30,
-    gold: 35,
-    exp: 12
+  "red_knight": {
+    images: ["red_knight_1.png", "red_knight_2.png"],
+    hp: 160,
+    atk: 230,
+    def: 105,
+    gold: 65,
+    exp: 22
   },
   "crusader": {
     images: ["crusader_1.png", "crusader_2.png"],
@@ -151,6 +161,14 @@ export const monsters = {
     gold: 144,
     exp: 48
   },
+  "yellow_guard": {
+    images: ["yellow_guard_1.png", "yellow_guard_2.png"],
+    hp: 50,
+    atk: 48,
+    def: 22,
+    gold: 12,
+    exp: 4
+  },
   "blue_guard": {
     images: ["blue_guard_1.png", "blue_guard_2.png"],
     hp: 100,
@@ -158,6 +176,14 @@ export const monsters = {
     def: 110,
     gold: 100,
     exp: 34
+  },
+  "red_guard": {
+    images: ["red_guard_1.png", "red_guard_2.png"],
+    hp: 180,
+    atk: 460,
+    def: 360,
+    gold: 200,
+    exp: 67
   },
   "slime_king": {
     images: ["slime_king_1.png", "slime_king_2.png"],
@@ -167,14 +193,7 @@ export const monsters = {
     gold: 40,
     exp: 14
   },
-  "red_knight": {
-    images: ["red_knight_1.png", "red_knight_2.png"],
-    hp: 160,
-    atk: 230,
-    def: 105,
-    gold: 65,
-    exp: 22
-  },
+  
   "red_bat": {
     images: ["red_bat_1.png", "red_bat_2.png"],
     hp: 200,
@@ -199,6 +218,22 @@ export const monsters = {
     gold: 90,
     exp: 30
   },
+  "dark_knight": {
+    images: ["dark_knight_1.png", "dark_knight_2.png"],
+    hp: 180,
+    atk: 430,
+    def: 210,
+    gold: 120,
+    exp: 40
+  },
+  "duosworder": {
+    images: ["duosworder_1.png", "duosworder_2.png"],
+    hp: 100,
+    atk: 680,
+    def: 50,
+    gold: 55,
+    exp: 19
+  },
   "sub_demon": {
     images: ["sub_demon_1.png", "sub_demon_2.png"],
     hp: 230,
@@ -215,30 +250,6 @@ export const monsters = {
     gold: 500,
     exp: 167
   },
-  "paladin": {
-    images: ["paladin_1.png", "paladin_2.png"],
-    hp: 180,
-    atk: 430,
-    def: 210,
-    gold: 120,
-    exp: 40
-  },
-  "duosworder": {
-    images: ["duosworder_1.png", "duosworder_2.png"],
-    hp: 100,
-    atk: 680,
-    def: 50,
-    gold: 55,
-    exp: 19
-  },
-  "red_guard": {
-    images: ["red_guard_1.png", "red_guard_2.png"],
-    hp: 180,
-    atk: 460,
-    def: 360,
-    gold: 200,
-    exp: 67
-  },
   "grand_sorcerer": {
     images: ["grand_sorcerer_1.png", "grand_sorcerer_2.png"],
     hp: 4500,
@@ -247,11 +258,11 @@ export const monsters = {
     gold: 1000,
     exp: 334
   },
-  "princess": {
+  "?????": {
     images: ["princess_1.png", "princess_2.png"],
-    hp: 100,
-    atk: 30,
-    def: 30,
+    hp: 0,
+    atk: 0,
+    def: 0,
     gold: 1,
     exp: 1
   }
