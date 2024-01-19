@@ -43,6 +43,144 @@ export function createGreenSlime(cx:number, cy:number){
 export function createRedSlime(cx:number, cy:number){
   return monsterBuilder(cx, cy, "red_slime");
 }
+export function createMage(cx: number, cy: number) {
+  return monsterBuilder(cx, cy, "mage");
+}
+
+export function createArchMage(cx: number, cy: number) {
+  return monsterBuilder(cx, cy, "arch_mage");
+}
+
+export function createSmallBat(cx: number, cy: number) {
+  return monsterBuilder(cx, cy, "small_bat");
+}
+
+export function createBigBat(cx: number, cy: number) {
+  return monsterBuilder(cx, cy, "big_bat");
+}
+
+export function createSkeleton(cx: number, cy: number) {
+  return monsterBuilder(cx, cy, "skeleton");
+}
+
+export function createBlackSlime(cx: number, cy: number) {
+  return monsterBuilder(cx, cy, "black_slime");
+}
+
+export function createSwordSkeleton(cx: number, cy: number) {
+  return monsterBuilder(cx, cy, "sword_skeleton");
+}
+
+export function createCaptainSkeleton(cx: number, cy: number) {
+  return monsterBuilder(cx, cy, "captain_skeleton");
+}
+
+export function createArmorSkeleton(cx: number, cy: number) {
+  return monsterBuilder(cx, cy, "armor_skeleton");
+}
+
+export function createBeast(cx: number, cy: number) {
+  return monsterBuilder(cx, cy, "beast");
+}
+
+export function createSwordBeast(cx: number, cy: number) {
+  return monsterBuilder(cx, cy, "sword_beast");
+}
+
+export function createSlimeMan(cx: number, cy: number) {
+  return monsterBuilder(cx, cy, "slime_man");
+}
+
+export function createStone(cx: number, cy: number) {
+  return monsterBuilder(cx, cy, "stone");
+}
+
+export function createYellowKnight(cx: number, cy: number) {
+  return monsterBuilder(cx, cy, "yellow_knight");
+}
+
+export function createRedKnight(cx: number, cy: number) {
+  return monsterBuilder(cx, cy, "red_knight");
+}
+
+export function createCrusader(cx: number, cy: number) {
+  return monsterBuilder(cx, cy, "crusader");
+}
+
+export function createVampire(cx: number, cy: number) {
+  return monsterBuilder(cx, cy, "vampire");
+}
+
+export function createYellowGuard(cx: number, cy: number) {
+  return monsterBuilder(cx, cy, "yellow_guard");
+}
+
+export function createBlueGuard(cx: number, cy: number) {
+  return monsterBuilder(cx, cy, "blue_guard");
+}
+
+export function createRedGuard(cx: number, cy: number) {
+  return monsterBuilder(cx, cy, "red_guard");
+}
+
+export function createSlimeKing(cx: number, cy: number) {
+  return monsterBuilder(cx, cy, "slime_king");
+}
+
+export function createRedBat(cx: number, cy: number) {
+  return monsterBuilder(cx, cy, "red_bat");
+}
+
+export function createWitch(cx: number, cy: number) {
+  return monsterBuilder(cx, cy, "witch");
+}
+
+export function createArchWitch(cx: number, cy: number) {
+  return monsterBuilder(cx, cy, "arch_witch");
+}
+
+export function createDarkKnight(cx: number, cy: number) {
+  return monsterBuilder(cx, cy, "dark_knight");
+}
+
+export function createDuosworder(cx: number, cy: number) {
+  return monsterBuilder(cx, cy, "duosworder");
+}
+
+export function createSubDemon(cx: number, cy: number) {
+  return monsterBuilder(cx, cy, "sub_demon");
+}
+
+export function createDemon(cx: number, cy: number) {
+  return monsterBuilder(cx, cy, "demon");
+}
+
+export function createGrandSorcerer(cx: number, cy: number) {
+  return monsterBuilder(cx, cy, "grand_sorcerer");
+}
+
+export function createPrincess(cx: number, cy: number) {
+  return monsterBuilder(cx, cy, "?????");
+}
+export function createPrincesImage(cx: number, cy: number){
+  let animation_map = new Map();
+  let animation = AnimationSequence.makeSimple({
+    timePerFrame: 600,
+    repeat: true,
+    images: ["true_princess_1.png","true_princess_2.png"],
+  });
+  animation_map.set(AnimationState.IDLE_E, animation);
+  let monster = new Actor({
+    appearance: new AnimatedSprite({ width: 1, height: 1, animations: animation_map }),
+    rigidBody: new BoxBody({ cx, cy, width: 1, height: 1 }, { disableRotation: true }),
+    extra: {
+      isPrincess: true,
+      isWall:true,
+      dialogue:"Ah, my brave hero, you've come so far, only to find that my heart\nnow belongs to a greater power. The power and knowledge I've gained here,\nwith the Grand Sorcerer, far surpass any futile promises of a 'happily ever\nafter.' I am no longer the damsel in distress you thought you knew.",
+    }
+  });
+  return monster;
+}
 export function createMerchant(cx:number, cy:number){
   let animation_map = new Map();
   let merchant = AnimationSequence.makeSimple({

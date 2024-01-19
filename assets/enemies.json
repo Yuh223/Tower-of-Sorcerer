@@ -447,6 +447,20 @@
 		"trimmed": false,
 		"spriteSourceSize": {"x":0, "y":0, "w":32, "h":32},
 		"sourceSize": {"w":32, "h":32}
+	  },
+	  "true_princess_1.png": {
+		"frame": {"x":0, "y":1600, "w":32, "h":32},
+		"rotated": false,
+		"trimmed": false,
+		"spriteSourceSize": {"x":0, "y":0, "w":32, "h":32},
+		"sourceSize": {"w":32, "h":32}
+	  },
+	  "true_princess_2.png": {
+		"frame": {"x":0, "y":1600, "w":32, "h":32},
+		"rotated": false,
+		"trimmed": false,
+		"spriteSourceSize": {"x":0, "y":0, "w":32, "h":32},
+		"sourceSize": {"w":32, "h":32}
 	  }
 	},
 	"animations": {
@@ -481,7 +495,8 @@
         "demon": ["demon_1.png", "demon_2.png"],
         "sub_demon": ["sub_demon_1.png", "sub_demon_2.png"],
         "grand_sorcerer": ["grand_sorcerer_1.png", "grand_sorcerer_2.png"],
-        "princess": ["princess_1.png", "princess_2.png"]
+        "princess": ["princess_1.png", "princess_2.png"],
+		"princessimage":["true_princess_1.png","true_princess_2.png"]
     },
 	"meta": {
 	  "version": "1.1",

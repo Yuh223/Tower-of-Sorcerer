@@ -260,9 +260,9 @@ export const monsters: { [key: string]: MonsterData } = {
   },
   "?????": {
     images: ["princess_1.png", "princess_2.png"],
-    hp: 0,
-    atk: 0,
-    def: 0,
+    hp: 300,
+    atk: 10,
+    def: 10,
     gold: 1,
     exp: 1
   }

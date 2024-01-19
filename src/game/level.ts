@@ -4,7 +4,7 @@ import { Destination, Hero, Obstacle } from "../jetlag/Components/Role";
 import { AnimationSequence, AnimationState } from "../jetlag/Config";
 import { Actor } from "../jetlag/Entities/Actor";
 import { stage } from "../jetlag/Stage";
-import { createGreenSlime, createMerchant, createNPC, createRedSlime } from "./EntitySheet";
+import { createArchMage, createArchWitch, createArmorSkeleton, createBeast, createBigBat, createBlackSlime, createBlueGuard, createCaptainSkeleton, createCrusader, createDarkKnight, createDemon, createDuosworder, createGrandSorcerer, createGreenSlime, createMage, createMerchant, createNPC, createPrincesImage, createPrincess, createRedBat, createRedGuard, createRedKnight, createRedSlime, createSkeleton, createSlimeKing, createSlimeMan, createSmallBat, createStone, createSubDemon, createSwordBeast, createSwordSkeleton, createVampire, createWitch, createYellowGuard, createYellowKnight } from "./EntitySheet";
 import { heroControl } from "./common";
 import { SStore } from "./session";
 
@@ -43,11 +43,104 @@ export function levelConstructor(mazeLayout:string[][]){
           }
         });
       }
+      if (mazeLayout[row][col] === "a") {
+        createGreenSlime(col + 0.5, row + 0.5);
+      }
+      if (mazeLayout[row][col] === "b") {
+        createRedSlime(col + 0.5, row + 0.5);
+      }
+      if (mazeLayout[row][col] === "c") {
+        createMage(col + 0.5, row + 0.5);
+      }
+      if (mazeLayout[row][col] === "d") {
+        createArchMage(col + 0.5, row + 0.5);
+      }
+      if (mazeLayout[row][col] === "e") {
+        createSmallBat(col + 0.5, row + 0.5);
+      }
+      if (mazeLayout[row][col] === "f") {
+        createBigBat(col + 0.5, row + 0.5);
+      }
       if (mazeLayout[row][col] === "g") {
-        createGreenSlime(col + 0.5,row + 0.5);
+        createSkeleton(col + 0.5, row + 0.5);
+      }
+      if (mazeLayout[row][col] === "h") {
+        createBlackSlime(col + 0.5, row + 0.5);
+      }
+      if (mazeLayout[row][col] === "i") {
+        createSwordSkeleton(col + 0.5, row + 0.5);
+      }
+      if (mazeLayout[row][col] === "j") {
+        createCaptainSkeleton(col + 0.5, row + 0.5);
+      }
+      if (mazeLayout[row][col] === "k") {
+        createArmorSkeleton(col + 0.5, row + 0.5);
+      }
+      if (mazeLayout[row][col] === "l") {
+        createBeast(col + 0.5, row + 0.5);
+      }
+      if (mazeLayout[row][col] === "m") {
+        createSwordBeast(col + 0.5, row + 0.5);
+      }
+      if (mazeLayout[row][col] === "n") {
+        createSlimeMan(col + 0.5, row + 0.5);
+      }
+      if (mazeLayout[row][col] === "o") {
+        createStone(col + 0.5, row + 0.5);
+      }
+      if (mazeLayout[row][col] === "p") {
+        createYellowKnight(col + 0.5, row + 0.5);
+      }
+      if (mazeLayout[row][col] === "q") {
+        createRedKnight(col + 0.5, row + 0.5);
       }
       if (mazeLayout[row][col] === "r") {
-        createRedSlime(col + 0.5,row + 0.5);
+        createCrusader(col + 0.5, row + 0.5);
+      }
+      if (mazeLayout[row][col] === "s") {
+        createVampire(col + 0.5, row + 0.5);
+      }
+      if (mazeLayout[row][col] === "t") {
+        createYellowGuard(col + 0.5, row + 0.5);
+      }
+      if (mazeLayout[row][col] === "u") {
+        createBlueGuard(col + 0.5, row + 0.5);
+      }
+      if (mazeLayout[row][col] === "v") {
+        createRedGuard(col + 0.5, row + 0.5);
+      }
+      if (mazeLayout[row][col] === "w") {
+        createSlimeKing(col + 0.5, row + 0.5);
+      }
+      if (mazeLayout[row][col] === "x") {
+        createRedBat(col + 0.5, row + 0.5);
+      }
+      if (mazeLayout[row][col] === "y") {
+        createWitch(col + 0.5, row + 0.5);
+      }
+      if (mazeLayout[row][col] === "z") {
+        createArchWitch(col + 0.5, row + 0.5);
+      }
+      if (mazeLayout[row][col] === "A") {
+        createDarkKnight(col + 0.5, row + 0.5);
+      }
+      if (mazeLayout[row][col] === "C") {
+        createDuosworder(col + 0.5, row + 0.5);
+      }
+      if (mazeLayout[row][col] === "E") {
+        createSubDemon(col + 0.5, row + 0.5);
+      }
+      if (mazeLayout[row][col] === "H") {
+        createDemon(col + 0.5, row + 0.5);
+      }
+      if (mazeLayout[row][col] === "I") {
+        createGrandSorcerer(col + 0.5, row + 0.5);
+      }
+      if (mazeLayout[row][col] === "J") {
+        createPrincess(col + 0.5, row + 0.5);
+      }
+      if (mazeLayout[row][col] === "K") {
+        createPrincesImage(col + 0.5, row + 0.5);
       }
       if (mazeLayout[row][col] === "U") {
         new Actor({

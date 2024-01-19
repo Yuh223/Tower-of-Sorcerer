@@ -1,6 +1,6 @@
 
 import { Actor } from "../jetlag/Entities/Actor";
-import { FilledBox, ImageSprite, TextSprite } from "../jetlag/Components/Appearance";
+import { ImageSprite, TextSprite } from "../jetlag/Components/Appearance";
 import { stage } from "../jetlag/Stage";
 import { BoxBody } from "../jetlag/Components/RigidBody";
 import { splashBuilder } from "./splash";
@@ -45,12 +45,11 @@ export function helpBuilder(level: number) {
     const gapX = 4.5; 
     const gapY = 4; 
 
-    // 遍历helpData来创建图像和文本
     helpData.forEach((item, index) => {
         const x = startX + (index % 3) * (imageWidth + gapX);
         const y = startY + Math.floor(index / 3) * (imageHeight + textHeight + gapY);
 
-        // 创建ImageSprite
+        // ImageSprite
         new Actor({
             appearance: new ImageSprite({
                 img: item.img,
@@ -60,7 +59,7 @@ export function helpBuilder(level: number) {
             rigidBody: new BoxBody({ cx: x, cy: y, width: imageWidth, height: imageHeight })
         });
 
-        // 创建TextSprite
+        // TextSprite
         new Actor({
             appearance: new TextSprite({
                 center: true,

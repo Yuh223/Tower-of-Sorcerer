@@ -172,7 +172,7 @@ export function merchantPurchase(hero:Actor) {
     });
     new Actor({
       appearance: new TextSprite({ center: true, face: "Arial", color: "#fa0505", size: 28, z: 0 }, 
-      () => `Gold Required: ${hero.extra.initialPurchaseGold}`),
+      () => `Gold Required: ${hero.extra.PurchaseGold}`),
       rigidBody: new BoxBody({ cx: 6.5, cy: 10, width: .1, height: .1 }, { scene: overlay }),
     });
     new Actor({
@@ -264,6 +264,9 @@ export function movingCollision(cx:number,cy:number,hero:Actor){
       }
       sstore.level1[Math.round(o.rigidBody.getCenter().y*10)/10-0.5][Math.round(o.rigidBody.getCenter().x*10)/10-0.5] = " ";
       callfieldBook();
+    }else if (o.extra.isPrincess){
+      npcDialogue(o);
+      sstore.level1[Math.round(o.rigidBody.getCenter().y*10)/10-0.5][Math.round(o.rigidBody.getCenter().x*10)/10-0.5] = "J";
     }else if (o.extra.isItem){
       stage.musicLibrary.getSound("item.mp3").play();
       if(o.extra.isKey){  
