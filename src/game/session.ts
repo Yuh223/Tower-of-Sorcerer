@@ -21,6 +21,24 @@ export class SStore {
     levels = 1;
     level1 = convertTo2DArray(mazeLayout1);
     level2 = convertTo2DArray(mazeLayout2);
+    level3 = convertTo2DArray(mazeLayout3);
+    level4 = convertTo2DArray(mazeLayout4);
+    level5 = convertTo2DArray(mazeLayout5);
+    level6 = convertTo2DArray(mazeLayout6);
+    level7 = convertTo2DArray(mazeLayout7);
+    level8 = convertTo2DArray(mazeLayout8);
+    level9 = convertTo2DArray(mazeLayout9);
+    level10 = convertTo2DArray(mazeLayout10);
+    level11 = convertTo2DArray(mazeLayout11);
+    level12 = convertTo2DArray(mazeLayout12);
+    level13 = convertTo2DArray(mazeLayout13);
+    level14 = convertTo2DArray(mazeLayout14);
+    level15 = convertTo2DArray(mazeLayout15);
+    level16 = convertTo2DArray(mazeLayout16);
+    level17 = convertTo2DArray(mazeLayout17);
+    level18 = convertTo2DArray(mazeLayout18);
+    level19 = convertTo2DArray(mazeLayout19);
+    level20 = convertTo2DArray(mazeLayout20);
 }
 function convertTo2DArray(layout: string[]): string[][] {
   let layout2D: string[][] = [];
@@ -36,18 +54,18 @@ const mazeLayout1 = [
   "#   ##6#### #",
   "#   #     # #",
   "#####5### # #",
-  "# M #r   g# #",
+  "# M #a   b# #",
   "#N  ###4### #",
   "#           #",
-  "#K    #######",
-  "#GFRB W     #",
+  "#     #######",
+  "#          a#",
   "######123   #",
-  "#!@$%^&*()- #",
+  "#W  ab      #",
   "#############",
 ];
 const mazeLayout2 = [
   "#############",
-  "#D  # 1     #",
+  "#DW # 1     #",
   "#   #    c  #",
   "#   #       #",
   "## ##  #4# g#",
@@ -57,7 +75,7 @@ const mazeLayout2 = [
   "#  b###a##  #",
   "#           #",
   "##### 2     #",
-  "#U      h   #",
+  "#UL     h   #",
   "#############",
 ];
 const mazeLayout3 = [
